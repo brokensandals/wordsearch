@@ -7,12 +7,13 @@ import App from './App';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('<App />', () => {
-  it('renders without crashing', () => {
-    const wrapper = shallow(<App />);
-  });
-
-  it('renders a <Grid /> component', () => {
+  it('renders a <Grid />', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.find('Connect(Grid)')).toHaveLength(1);
+  });
+
+  it('renders a <WordList />', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find('Connect(WordList)')).toHaveLength(1);
   });
 });
