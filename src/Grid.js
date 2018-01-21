@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Letter from './Letter';
 
-function Grid({ grid }) {
+export function Grid({ grid }) {
   return (
     <table>
-      {grid.map(row => (
-        <tr>
-          {row.map(cell => (
-            <td>
-              {cell}
+      {grid.map((row, y) => (
+        <tr key={y}>
+          {row.map((_, x) => (
+            <td key={x}>
+              <Letter position={{x, y}} />
             </td>))}
         </tr>))}
     </table>
