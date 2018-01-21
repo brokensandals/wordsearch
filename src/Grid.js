@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Grid = ({ grid }) => {
+function Grid({ grid }) {
   return (
     <table>
       {grid.map(row => (
