@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './Letter.css'
 
 export function Letter({ letter }) {
   return (

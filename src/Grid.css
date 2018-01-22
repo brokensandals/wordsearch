@@ -1,0 +1,9 @@
+.Grid {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Grid td {
+  padding: 0;
+  margin: 0;
+}

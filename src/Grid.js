@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Letter from './Letter';
+import './Grid.css';
 
 export function Grid({ grid }) {
   return (
-    <table>
+    <table className="Grid">
       {grid.map((row, y) => (
         <tr key={y}>
           {row.map((_, x) => (

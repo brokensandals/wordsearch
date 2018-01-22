@@ -1,0 +1,14 @@
+.WordList {
+  list-style: none;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  columns: 3;
+}
+
+.WordList span {
+  display: block;
+  padding: 3px 0;
+  text-align: center;
+}

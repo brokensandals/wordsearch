@@ -5,7 +5,7 @@ import WordList from './WordList';
 
 function App() {
   return (
-    <div class=".App">
+    <div className="App">
       <Grid />
       <WordList />
     </div>
