@@ -1,9 +1,19 @@
 .Grid {
   margin-left: auto;
   margin-right: auto;
+  display: block;
 }
 
 .Grid td {
   padding: 0;
   margin: 0;
+}
+
+.Grid text {
+  cursor: default;
+}
+
+.Grid .hint {
+  stroke: orange;
+  stroke-width: 2;
 }

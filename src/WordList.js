@@ -14,6 +14,9 @@ export function WordList({ words }) {
   );
 }
 
-const mapStateToProps = ({ words }) => ({ words: words.map(word => word.word) });
+const mapStateToProps = ({ wordPositions }) => (
+  {
+    words: wordPositions.map(wordPosition => wordPosition.word) 
+  });
 
 export default connect(mapStateToProps, {})(WordList);
