@@ -16,7 +16,7 @@ export function WordList({ words }) {
 
 const mapStateToProps = ({ wordPositions }) => (
   {
-    words: wordPositions.map(wordPosition => wordPosition.word) 
+    words: Object.keys(wordPositions)
   });
 
 export default connect(mapStateToProps, {})(WordList);

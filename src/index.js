@@ -12,33 +12,28 @@ const TEST_STATE = {
          ['W', 'S', 'U', 'U', 'A'],
          ['A', 'B', 'M', 'M', 'N'],
          ['Z', 'W', 'U', 'P', 'V']],
-  wordPositions: [
-    {
-      word: 'HI',
+  wordPositions: {
+    HI: {
       start: {x: 0, y: 0},
       end: {x: 1, y: 0}
     },
-    {
-      word: 'HOW',
+    HOW: {
       start: {x: 0, y: 0},
       end: {x: 0, y: 2}
     },
-    {
-      word: 'RUN',
+    RUN: {
       start: {x: 2, y: 1},
       end: {x: 4, y: 3}
     },
-    {
-      word: 'RUM',
+    RUM: {
       start: {x: 2, y: 1},
       end: {x: 2, y: 3}
     },
-    {
-      word: 'TRIP',
+    TRIP: {
       start: {x: 1, y: 1},
       end: {x: 4, y: 1}
     }
-  ],
+  },
   hintedWords: ['HI', 'RUN']
 };
 

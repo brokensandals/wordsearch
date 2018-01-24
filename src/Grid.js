@@ -35,8 +35,7 @@ export function Grid({ grid, hintedWordPositions }) {
 const mapStateToProps = ({ grid, hintedWords, wordPositions }) => (
   {
     grid,
-    hintedWordPositions: hintedWords.map(hinted =>
-      wordPositions.find(wordPosition => wordPosition.word === hinted))
+    hintedWordPositions: hintedWords.map(hinted => wordPositions[hinted])
   }
 );
 
