@@ -32,10 +32,10 @@ export function Grid({ grid, hintedWordPositions }) {
   );
 }
 
-const mapStateToProps = ({ grid, hintedWords, wordPositions }) => (
+const mapStateToProps = ({ grid, words }) => (
   {
     grid,
-    hintedWordPositions: hintedWords.map(hinted => wordPositions[hinted])
+    hintedWordPositions: Object.values(words).filter(word => word.hinted)
   }
 );
 

@@ -12,10 +12,11 @@ const TEST_STATE = {
          ['W', 'S', 'U', 'U', 'A'],
          ['A', 'B', 'M', 'M', 'N'],
          ['Z', 'W', 'U', 'P', 'V']],
-  wordPositions: {
+  words: {
     HI: {
       start: {x: 0, y: 0},
-      end: {x: 1, y: 0}
+      end: {x: 1, y: 0},
+      hinted: true
     },
     HOW: {
       start: {x: 0, y: 0},
@@ -23,7 +24,8 @@ const TEST_STATE = {
     },
     RUN: {
       start: {x: 2, y: 1},
-      end: {x: 4, y: 3}
+      end: {x: 4, y: 3},
+      hinted: true
     },
     RUM: {
       start: {x: 2, y: 1},
@@ -33,8 +35,7 @@ const TEST_STATE = {
       start: {x: 1, y: 1},
       end: {x: 4, y: 1}
     }
-  },
-  hintedWords: ['HI', 'RUN']
+  }
 };
 
 function placeholderReducer(state = TEST_STATE, action) {
