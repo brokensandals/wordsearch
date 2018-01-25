@@ -9,8 +9,7 @@ const TEST_STATE = {
   words: {
     HI: {
       start: {x: 0, y: 0},
-      end: {x: 1, y: 0},
-      hinted: true
+      end: {x: 1, y: 0}
     },
     HOW: {
       start: {x: 0, y: 0},
@@ -18,8 +17,7 @@ const TEST_STATE = {
     },
     RUN: {
       start: {x: 2, y: 1},
-      end: {x: 4, y: 3},
-      hinted: true
+      end: {x: 4, y: 3}
     },
     RUM: {
       start: {x: 2, y: 1},
