@@ -5,44 +5,9 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import reducer from './reducers';
 
-const TEST_STATE = {
-  grid: [['H', 'I', 'X', 'Y', 'Z'],
-         ['O', 'T', 'R', 'I', 'P'],
-         ['W', 'S', 'U', 'U', 'A'],
-         ['A', 'B', 'M', 'M', 'N'],
-         ['Z', 'W', 'U', 'P', 'V']],
-  words: {
-    HI: {
-      start: {x: 0, y: 0},
-      end: {x: 1, y: 0},
-      hinted: true
-    },
-    HOW: {
-      start: {x: 0, y: 0},
-      end: {x: 0, y: 2}
-    },
-    RUN: {
-      start: {x: 2, y: 1},
-      end: {x: 4, y: 3},
-      hinted: true
-    },
-    RUM: {
-      start: {x: 2, y: 1},
-      end: {x: 2, y: 3}
-    },
-    TRIP: {
-      start: {x: 1, y: 1},
-      end: {x: 4, y: 1}
-    }
-  }
-};
-
-function placeholderReducer(state = TEST_STATE, action) {
-  return state;
-}
-
-let store = createStore(placeholderReducer);
+let store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>

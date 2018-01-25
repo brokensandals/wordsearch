@@ -7,12 +7,26 @@ import { WordList } from './WordList';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('<WordList />', () => {
-  it('renders a <WordListEntry /> for each word', () => {
+  it('renders an <li /> for each word', () => {
     const testWords = ['HUNGRY', 'SATIATED'];
     const wrapper = shallow(<WordList words={testWords} />);
-    const wordListEntries = wrapper.find('WordListEntry');
-    expect(wordListEntries).toHaveLength(2);
-    expect(wordListEntries.get(0).props.word).toBe('HUNGRY');
-    expect(wordListEntries.get(1).props.word).toBe('SATIATED');
+    const entries = wrapper.find('li');
+    expect(entries).toHaveLength(2);
+    expect(entries.at(0).text()).toBe('HUNGRY');
+    expect(entries.at(1).text()).toBe('SATIATED');
+  });
+
+  it('handles mouseover events for words', () => {
+    const fn = jest.fn();
+    const wrapper = shallow(<WordList words={['TEST']} onWordMouseOver={fn} />);
+    wrapper.find('li').at(0).simulate('mouseover');
+    expect(fn).toHaveBeenCalledWith('TEST');
+  });
+
+  it('handles mouseout events for words', () => {
+    const fn = jest.fn();
+    const wrapper = shallow(<WordList words={['TEST']} onWordMouseOut={fn} />);
+    wrapper.find('li').at(0).simulate('mouseout');
+    expect(fn).toHaveBeenCalledWith('TEST');
   });
 });

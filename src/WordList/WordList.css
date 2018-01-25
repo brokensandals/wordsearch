@@ -7,7 +7,7 @@
   columns: 3;
 }
 
-.WordList span {
+.WordList li {
   display: block;
   padding: 3px 0;
   text-align: center;
