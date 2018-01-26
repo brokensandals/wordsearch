@@ -6,7 +6,7 @@ import './Grid.css';
 const CELL_WIDTH = 30;
 const CELL_HEIGHT = 30;
 const CELL_FONT_SIZE = 24;
-const CELL_MIDDLE_Y = 22; // unsure if this number just happens to work or has significance
+const CELL_PADDING_Y = CELL_HEIGHT - CELL_FONT_SIZE;
 
 export class Grid extends React.Component {
   constructor(props) {
@@ -77,23 +77,25 @@ export class Grid extends React.Component {
            onMouseMove={this.handleMouseMove}
            onMouseUp={this.handleMouseUp}
            ref={svg => this.svg = svg} >
+
         {grid.map((row, y) =>
           row.map((letter, x) => (
             <text key={[x, y]}
                   x={x * CELL_WIDTH + (CELL_WIDTH / 2)}
-                  y={(y + 1) * CELL_HEIGHT}
+                  y={(y + 1) * CELL_HEIGHT - CELL_PADDING_Y}
                   fontSize={CELL_FONT_SIZE}
                   textAnchor="middle">
               {letter}
             </text>)))}
+
         {words.filter(word => word.hinted || word.solved)
               .map(({word, start, end, hinted, solved}) => (
           <line className={hinted ? 'hinted' : 'solved'}
                 key={word}
                 x1={start.x * CELL_WIDTH + (CELL_WIDTH / 2)}
-                y1={start.y * CELL_HEIGHT + CELL_MIDDLE_Y}
+                y1={start.y * CELL_HEIGHT + (CELL_HEIGHT / 2)}
                 x2={end.x * CELL_WIDTH + (CELL_WIDTH / 2)}
-                y2={end.y * CELL_HEIGHT + CELL_MIDDLE_Y} />))}
+                y2={end.y * CELL_HEIGHT + (CELL_HEIGHT / 2)} />))}
 
         {this.state.proposedSolution &&
           <line className="solved"

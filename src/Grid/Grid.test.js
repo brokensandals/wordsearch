@@ -45,18 +45,18 @@ describe('<Grid />', () => {
     const horizontal = lines.get(0);
     expect(horizontal.props.x1).toEqual(45);
     expect(horizontal.props.x2).toEqual(105);
-    expect(horizontal.props.y1).toEqual(52);
-    expect(horizontal.props.y2).toEqual(52);
+    expect(horizontal.props.y1).toEqual(45);
+    expect(horizontal.props.y2).toEqual(45);
     const vertical = lines.get(1);
     expect(vertical.props.x1).toEqual(45);
     expect(vertical.props.x2).toEqual(45);
-    expect(vertical.props.y1).toEqual(52);
-    expect(vertical.props.y2).toEqual(112);
+    expect(vertical.props.y1).toEqual(45);
+    expect(vertical.props.y2).toEqual(105);
     const diagonal = lines.get(2);
     expect(diagonal.props.x1).toEqual(45);
     expect(diagonal.props.x2).toEqual(105);
-    expect(diagonal.props.y1).toEqual(82);
-    expect(diagonal.props.y2).toEqual(142);
+    expect(diagonal.props.y1).toEqual(75);
+    expect(diagonal.props.y2).toEqual(135);
   });
 
   it('renders a <line /> for each solved word', () => {
@@ -86,18 +86,18 @@ describe('<Grid />', () => {
     const horizontal = lines.get(0);
     expect(horizontal.props.x1).toEqual(45);
     expect(horizontal.props.x2).toEqual(105);
-    expect(horizontal.props.y1).toEqual(52);
-    expect(horizontal.props.y2).toEqual(52);
+    expect(horizontal.props.y1).toEqual(45);
+    expect(horizontal.props.y2).toEqual(45);
     const vertical = lines.get(1);
     expect(vertical.props.x1).toEqual(45);
     expect(vertical.props.x2).toEqual(45);
-    expect(vertical.props.y1).toEqual(52);
-    expect(vertical.props.y2).toEqual(112);
+    expect(vertical.props.y1).toEqual(45);
+    expect(vertical.props.y2).toEqual(105);
     const diagonal = lines.get(2);
     expect(diagonal.props.x1).toEqual(45);
     expect(diagonal.props.x2).toEqual(105);
-    expect(diagonal.props.y1).toEqual(82);
-    expect(diagonal.props.y2).toEqual(142);
+    expect(diagonal.props.y1).toEqual(75);
+    expect(diagonal.props.y2).toEqual(135);
   });
 
   it('gives hints precedence over solutions', () => {
