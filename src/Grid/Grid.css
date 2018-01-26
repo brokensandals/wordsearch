@@ -4,11 +4,6 @@
   display: block;
 }
 
-.Grid td {
-  padding: 0;
-  margin: 0;
-}
-
 .Grid text {
   cursor: default;
 }
