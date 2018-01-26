@@ -36,16 +36,20 @@ const TEST_STATE = {
   }
 };
 
-function grid(state = TEST_STATE.grid, action) {
+export function grid(state = TEST_STATE.grid, action) {
   return state;
 }
 
-function words(state = TEST_STATE.words, action) {
+export function words(state = TEST_STATE.words, action) {
   switch (action.type) {
     case 'SET_WORD_HINTED':
-      return { ...state,
-        [action.word]: { ...state[action.word], hinted: action.hinted }
-      };
+      if (state[action.word]) {
+        return { ...state,
+          [action.word]: { ...state[action.word], hinted: action.hinted }
+        };
+      } else {
+        return state;
+      }
     case 'ATTEMPT_SOLUTION':
       const word = Object.values(state).find(word =>
         (_.isEqual(word.start, action.start) && _.isEqual(word.end, action.end)) ||
