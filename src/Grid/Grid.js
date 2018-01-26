@@ -20,17 +20,13 @@ export class Grid extends React.Component {
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.handleTouchStart = this.handleTouchStart.bind(this);
+    this.handleTouchMove = this.handleTouchMove.bind(this);
+    this.handleTouchCancel = this.handleTouchCancel.bind(this);
+    this.handleTouchEnd = this.handleTouchEnd.bind(this);
   }
 
-  handleMouseDown(event) {
-    if (this.state.proposedSolution) {
-      // The user already clicked on the grid earlier to start a
-      // selection; we'll complete their selection on the next
-      // mouseup event.
-      return;
-    }
-
-    // Start a selection.
+  startSelection(event) {
     const coords = {
       x: event.clientX - this.svg.getBoundingClientRect().left,
       y: event.clientY - this.svg.getBoundingClientRect().top
@@ -40,10 +36,9 @@ export class Grid extends React.Component {
         start: coords,
         end: coords
       }});
-    event.preventDefault();
   }
 
-  handleMouseMove(event) {
+  updateSelection(event) {
     // Update hoverCell in order to highlight the cell that the
     // mouse is currently in, and also update proposedSolution
     // if the user is in the process of making a selection.
@@ -65,6 +60,40 @@ export class Grid extends React.Component {
       }
       return state;
     });
+  }
+
+  finishSelection() {
+    if (!this.state.proposedSolution) {
+      return;
+    }
+
+    this.props.attemptSolution(
+      {
+        x: Math.floor(this.state.proposedSolution.start.x / 30),
+        y: Math.floor(this.state.proposedSolution.start.y / 30)
+      },
+      {
+        x: Math.floor(this.state.proposedSolution.end.x / 30),
+        y: Math.floor(this.state.proposedSolution.end.y / 30)
+      }
+    );
+    this.setState({ proposedSolution: null });
+  }
+
+  handleMouseDown(event) {
+    if (this.state.proposedSolution) {
+      // The user already clicked on the grid earlier to start a
+      // selection; we'll complete their selection on the next
+      // mouseup event.
+      return;
+    }
+
+    this.startSelection(event);
+    event.preventDefault();
+  }
+
+  handleMouseMove(event) {
+    this.updateSelection(event);
     event.preventDefault();
   }
 
@@ -79,17 +108,7 @@ export class Grid extends React.Component {
       // indicate the end point, so it's time to check whether
       // they've actually found a word.
       if (!_.isEqual(start, end)) {
-        this.props.attemptSolution(
-          {
-            x: Math.floor(this.state.proposedSolution.start.x / 30),
-            y: Math.floor(this.state.proposedSolution.start.y / 30)
-          },
-          {
-            x: Math.floor(this.state.proposedSolution.end.x / 30),
-            y: Math.floor(this.state.proposedSolution.end.y / 30)
-          }
-        )
-        this.setState({ proposedSolution: null });
+        this.finishSelection();
         event.preventDefault();
       }
     }
@@ -97,6 +116,26 @@ export class Grid extends React.Component {
 
   handleMouseLeave() {
     this.setState({ hoverCell: null });
+  }
+
+  handleTouchStart(event) {
+    this.startSelection(event.touches[0]);
+    event.preventDefault();
+  }
+
+  handleTouchMove(event) {
+    this.updateSelection(event.touches[0]);
+    event.preventDefault();
+  }
+
+  handleTouchCancel() {
+    this.setState({ proposedSolution: null, hoverCell: null });
+  }
+
+  handleTouchEnd(event) {
+    this.finishSelection();
+    this.setState({ proposedSolution: null, hoverCell: null });
+    event.preventDefault();
   }
 
   render() {
@@ -109,6 +148,10 @@ export class Grid extends React.Component {
            onMouseMove={this.handleMouseMove}
            onMouseUp={this.handleMouseUp}
            onMouseLeave={this.handleMouseLeave}
+           onTouchStart={this.handleTouchStart}
+           onTouchMove={this.handleTouchMove}
+           onTouchCancel={this.handleTouchCancel}
+           onTouchEnd={this.handleTouchEnd}
            ref={svg => this.svg = svg} >
 
         {this.state.hoverCell &&
