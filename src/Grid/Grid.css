@@ -17,3 +17,7 @@
   stroke: black;
   stroke-width: 2;
 }
+
+.Grid .hover {
+  fill: lightgray;
+}
