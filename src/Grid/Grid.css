@@ -13,12 +13,12 @@
   cursor: default;
 }
 
-.Grid .hint {
+.Grid .hinted {
   stroke: orange;
   stroke-width: 2;
 }
 
-.Grid .solution {
+.Grid .solved {
   stroke: black;
   stroke-width: 2;
 }

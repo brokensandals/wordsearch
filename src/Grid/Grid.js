@@ -88,7 +88,7 @@ export class Grid extends React.Component {
             </text>)))}
         {words.filter(word => word.hinted || word.solved)
               .map(({word, start, end, hinted, solved}) => (
-          <line className={hinted ? 'hint' : 'solution'}
+          <line className={hinted ? 'hinted' : 'solved'}
                 key={word}
                 x1={start.x * CELL_WIDTH + (CELL_WIDTH / 2)}
                 y1={start.y * CELL_HEIGHT + CELL_MIDDLE_Y}
@@ -96,8 +96,8 @@ export class Grid extends React.Component {
                 y2={end.y * CELL_HEIGHT + CELL_MIDDLE_Y} />))}
 
         {this.state.proposedSolution &&
-          <line className="solution"
-                key="_solution"
+          <line className="solved"
+                key="_proposed_solution"
                 x1={this.state.proposedSolution.start.x}
                 x2={this.state.proposedSolution.end.x}
                 y1={this.state.proposedSolution.start.y}

@@ -6,8 +6,9 @@ import './WordList.css';
 export function WordList({ words, onWordMouseOut, onWordMouseOver }) {
   return (
     <ul className="WordList">
-      {words.map(word => (
+      {words.map(({ word, hinted, solved }) => (
         <li key={word}
+            className={((hinted ? 'hinted ' : ' ') + (solved ? 'solved' : '')).trim()}
             onMouseOut={() => onWordMouseOut(word)}
             onMouseOver={() => onWordMouseOver(word)}>
           {word}
@@ -18,7 +19,7 @@ export function WordList({ words, onWordMouseOut, onWordMouseOver }) {
 
 function mapStateToProps({ words }) {
   return {
-    words: Object.keys(words)
+    words: Object.values(words)
   };
 }
 

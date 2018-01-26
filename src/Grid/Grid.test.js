@@ -40,7 +40,7 @@ describe('<Grid />', () => {
       }
     ];
     const wrapper = shallow(<Grid grid={[['A']]} words={words} />);
-    const lines = wrapper.find('line .hint');
+    const lines = wrapper.find('line .hinted');
     expect(lines).toHaveLength(3);
     const horizontal = lines.get(0);
     expect(horizontal.props.x1).toEqual(45);
@@ -81,7 +81,7 @@ describe('<Grid />', () => {
       }
     ];
     const wrapper = shallow(<Grid grid={[['A']]} words={words} />);
-    const lines = wrapper.find('line .solution');
+    const lines = wrapper.find('line .solved');
     expect(lines).toHaveLength(3);
     const horizontal = lines.get(0);
     expect(horizontal.props.x1).toEqual(45);
@@ -111,7 +111,7 @@ describe('<Grid />', () => {
       }
     ];
     const wrapper = shallow(<Grid grid={[['A']]} words={words} />);
-    expect(wrapper.find('line .solution')).toHaveLength(0);
-    expect(wrapper.find('line .hint')).toHaveLength(1);
+    expect(wrapper.find('line .solved')).toHaveLength(0);
+    expect(wrapper.find('line .hinted')).toHaveLength(1);
   });
 });

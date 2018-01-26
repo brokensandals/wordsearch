@@ -13,3 +13,11 @@
   text-align: center;
   cursor: default;
 }
+
+.WordList .hinted {
+  background-color: orange;
+}
+
+.WordList .solved {
+  text-decoration: line-through;
+}
