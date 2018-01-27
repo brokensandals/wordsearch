@@ -19,22 +19,6 @@ describe('<WordList />', () => {
     expect(entries.at(1).text()).toBe('SATIATED');
   });
 
-  it('handles mouseover events for words', () => {
-    const words = [{ word: 'TEST' }];
-    const fn = jest.fn();
-    const wrapper = shallow(<WordList words={words} onWordMouseOver={fn} />);
-    wrapper.find('li').at(0).simulate('mouseover');
-    expect(fn).toHaveBeenCalledWith('TEST');
-  });
-
-  it('handles mouseout events for words', () => {
-    const words = [{ word: 'TEST' }];
-    const fn = jest.fn();
-    const wrapper = shallow(<WordList words={words} onWordMouseOut={fn} />);
-    wrapper.find('li').at(0).simulate('mouseout');
-    expect(fn).toHaveBeenCalledWith('TEST');
-  });
-
   it('does not set hinted or solved class when word is not hinted or solved', () => {
     const words = [{ word: 'TEST' }];
     const wrapper = shallow(<WordList words={words} />);
@@ -56,9 +40,49 @@ describe('<WordList />', () => {
     expect(wrapper.find('li .solved')).toHaveLength(1);
   });
 
-  it('set hinted and solved classes when word is both hinted and solved', () => {
+  it('sets hinted and solved classes when word is both hinted and solved', () => {
     const words = [{ word: 'TEST', hinted: true, solved: true }];
     const wrapper = shallow(<WordList words={words} />);
     expect(wrapper.find('li .hinted.solved')).toHaveLength(1);
+  });
+
+  describe('when showWordHints is true', () => {
+    const showWordHints = true;
+
+    it('sets hinted to true on mouseover', () => {
+      const words = [{ word: 'TEST' }];
+      const fn = jest.fn();
+      const wrapper = shallow(<WordList words={words} setWordHinted={fn} showWordHints={showWordHints} />);
+      wrapper.find('li').at(0).simulate('mouseover');
+      expect(fn).toHaveBeenCalledWith('TEST', true);
+    });
+
+    it('sets hinted to false on mouseout', () => {
+      const words = [{ word: 'TEST' }];
+      const fn = jest.fn();
+      const wrapper = shallow(<WordList words={words} setWordHinted={fn} showWordHints={showWordHints} />);
+      wrapper.find('li').at(0).simulate('mouseout');
+      expect(fn).toHaveBeenCalledWith('TEST', false);
+    });
+  });
+
+  describe('when showWordHints is false', () => {
+    const showWordHints = false;
+
+    it('does not set hinted on mouseover', () => {
+      const words = [{ word: 'TEST' }];
+      const fn = jest.fn();
+      const wrapper = shallow(<WordList words={words} setWordHinted={fn} showWordHints={showWordHints} />);
+      wrapper.find('li').at(0).simulate('mouseover');
+      expect(fn).not.toBeCalled();
+    });
+
+    it('does not set hinted on mouseout', () => {
+      const words = [{ word: 'TEST' }];
+      const fn = jest.fn();
+      const wrapper = shallow(<WordList words={words} setWordHinted={fn} showWordHints={showWordHints} />);
+      wrapper.find('li').at(0).simulate('mouseout');
+      expect(fn).not.toBeCalled();
+    });
   });
 });
