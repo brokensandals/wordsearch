@@ -8,6 +8,7 @@ const TEST_STATE = {
          ['A', 'B', 'M', 'M', 'N'],
          ['Z', 'W', 'U', 'P', 'V']],
   settings: {
+    expandMenu: false,
     showWordList: true,
     showWordHints: false
   },
