@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { mergeSettings } from '../actions';
 import './Menu.css';
 
-function Menu({ settings, mergeSettings }) {
+export function Menu({ settings, mergeSettings }) {
   const { expandMenu, showWordList, showWordHints } = settings;
 
   const handleShowHideClick = () => {
@@ -36,15 +36,16 @@ function Menu({ settings, mergeSettings }) {
             <label htmlFor="show-word-list">Show word list</label>
           </div>
 
-          <div style={ showWordList ? {} : { display: 'none' } }>
-            <input type="checkbox"
-                   id="show-word-hints"
-                   onChange={handleShowWordHintsChange}
-                   checked={showWordHints} />
-            <label htmlFor="show-word-hints">
-              Touch or hover over a word to highlight its location
-            </label>
-          </div>
+          {showWordList && 
+            <div>
+              <input type="checkbox"
+                     id="show-word-hints"
+                     onChange={handleShowWordHintsChange}
+                     checked={showWordHints} />
+              <label htmlFor="show-word-hints">
+                Touch or hover over a word to highlight its location
+              </label>
+            </div>}
         </div>}
     </div>
   );
