@@ -5,7 +5,7 @@ import Menu from './Menu/Menu';
 import Grid from './Grid/Grid';
 import WordList from './WordList/WordList';
 
-function App({ showWordList }) {
+export function App({ showWordList }) {
   return (
     <div className="App">
       <Menu />
