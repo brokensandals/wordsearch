@@ -7,6 +7,10 @@ const TEST_STATE = {
          ['W', 'S', 'U', 'U', 'A'],
          ['A', 'B', 'M', 'M', 'N'],
          ['Z', 'W', 'U', 'P', 'V']],
+  settings: {
+    showWordList: true,
+    showWordHints: false
+  },
   words: {
     HI: {
       word: 'HI',
@@ -40,6 +44,15 @@ export function grid(state = TEST_STATE.grid, action) {
   return state;
 }
 
+export function settings(state = TEST_STATE.settings, action) {
+  switch (action.type) {
+    case 'MERGE_SETTINGS':
+      return {...state, ...action.updatedSettings };
+    default:
+      return state;
+  }
+}
+
 export function words(state = TEST_STATE.words, action) {
   switch (action.type) {
     case 'SET_WORD_HINTED':
@@ -68,5 +81,6 @@ export function words(state = TEST_STATE.words, action) {
 
 export default combineReducers({
   grid,
+  settings,
   words
 });

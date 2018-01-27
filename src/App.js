@@ -1,15 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './App.css';
+import Menu from './Menu/Menu';
 import Grid from './Grid/Grid';
 import WordList from './WordList/WordList';
 
-function App() {
+function App({ showWordList }) {
   return (
     <div className="App">
+      <Menu />
       <Grid />
-      <WordList />
+      {showWordList && <WordList />}
     </div>
   );
 }
 
-export default App;
+function mapStateToProps({ settings: { showWordList } }) {
+  return { showWordList };
+}
+
+export default connect(mapStateToProps, {})(App);
