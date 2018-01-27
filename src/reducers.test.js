@@ -1,13 +1,39 @@
-import { grid, words } from './reducers';
-import { attemptSolution, setWordHinted } from './actions';
+import { grid, settings, words } from './reducers';
+import { attemptSolution, mergeSettings, setWordHinted } from './actions';
 
 describe('grid reducer', () => {
-  it('does nothing', () => {
-    expect(grid('foo', {})).toEqual('foo')
+  it('does nothing when the action is unrecognized', () => {
+    expect(grid('foo', { type: 'BOGUS' })).toEqual('foo')
   })
 });
 
+describe('settings reducer', () => {
+  it('does nothing when the action is unrecognized', () => {
+    expect(settings('foo', { type: 'BOGUS' })).toEqual('foo')
+  })
+
+  describe('MERGE_SETTINGS action', () => {
+    it('merges updatedSettings', () => {
+      const state = {
+        angry: true,
+        hungry: true
+      };
+      const action = mergeSettings({ hungry: false, satiated: true });
+      const expected = {
+        angry: true,
+        hungry: false,
+        satiated: true
+      };
+      expect(settings(state, action)).toEqual(expected);
+    });
+  });
+});
+
 describe('words reducer', () => {
+  it('does nothing when the action is unrecognized', () => {
+    expect(words('foo', { type: 'BOGUS' })).toEqual('foo')
+  })
+
   describe('SET_WORD_HINTED action', () => {
     it('sets hinted to false', () => {
       const state = {
