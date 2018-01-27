@@ -1,4 +1,4 @@
-import { attemptSolution, setWordHinted } from './actions';
+import { attemptSolution, mergeSettings, setWordHinted } from './actions';
 
 describe('attemptSolution action creator', () => {
   it('creates the action', () => {
@@ -8,6 +8,17 @@ describe('attemptSolution action creator', () => {
       end: {x: 3, y: 4}
     };
     const result = attemptSolution({x: 1, y: 2}, {x: 3, y: 4});
+    expect(result).toEqual(expected);
+  });
+});
+
+describe('mergeSettings action creator', () => {
+  it('creates the action', () => {
+    const expected = {
+      type: 'MERGE_SETTINGS',
+      updatedSettings: { beFunctional: false }
+    };
+    const result = mergeSettings({ beFunctional: false });
     expect(result).toEqual(expected);
   });
 });
