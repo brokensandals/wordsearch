@@ -7,7 +7,7 @@ describe('words array', () => {
 
   it('contains only alphabetic characters', () => {
     words.forEach(word => {
-      expect(word).toMatch(/[a-zA-Z]+/);
+      expect(word).toMatch(/^[a-zA-Z]+$/);
     });
   });
 });
